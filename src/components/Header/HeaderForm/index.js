@@ -15,7 +15,7 @@ function HeaderForm() {
 
         addTodo(values.text);
    
-        bag.resetForm();
+        bag.resetForm(); // bag içerisindeki input resetlemeyi kullandık
        }}
       validationsSchema={validationsSchema}
     >

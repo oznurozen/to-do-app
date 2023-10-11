@@ -4,6 +4,7 @@ import { v4 as uuidv4} from "uuid";
 const TodoContext = createContext();
 
 export const TodoProvider = ({children}) => {
+    const [filter, setFilter] =useState("all")
     const [todos, setTodos] = useState([
        {
         id:1,
@@ -39,23 +40,25 @@ export const TodoProvider = ({children}) => {
     
       }
 
-    const values = {
+    const values = {  //contexte geçeceğim veriler
         todos,
         setTodos,
         addTodo,
         toggleTodo,
         destroyTodo,
+        filter,
+        setFilter,
        
     };
 
     return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>
 };
 
-export const useTodo = () => {
+export const useTodo = () => { //contexti doğrudan kullanabilmek için custum özelleştiirlmiş bir hook yazıyoruz
     const context = useContext(TodoContext);
 
     if(context === undefined){
-        throw new Error("useTodo hook must be call inside TodoProvider component");
+        throw new Error("useTodo hook unun TodoProvider bileşenin içinde çağrılması gerekir.");
     }
 
     return context;

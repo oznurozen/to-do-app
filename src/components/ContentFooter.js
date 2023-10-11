@@ -1,26 +1,33 @@
 import React from 'react'
+import { useTodo } from "../contexts/ToDoContext";
 
 function ContentFooter() {
+	const { todos, setTodos, filter, setFilter } = useTodo();
+
+	const clearCompleted = () => {
+		setTodos((prev)=> prev.filter((todo)=> !todo.completed));
+	}
+	
   return (
     <footer className="footer">
 		<span className="todo-count">
-			<strong>2</strong>
-			items left
+			<strong>{todos.length} </strong>
+			item{todos.length > 1 && "s" } left
 		</span>
 
 		<ul className="filters">
 			<li>
-				<a href="#/" className="selected">All</a>
+				<a href="#/" onClick={()=> setFilter("all")} className={filter === "all" ? "selected": ""}>All</a>
 			</li>
 			<li>
-				<a href="#/">Active</a>
+				<a href="#/" onClick={()=> setFilter("active")} className={filter === "active" ? "selected": ""}>Active</a>
 			</li>
 			<li>
-				<a href="#/">Completed</a>
+				<a href="#/" onClick={()=> setFilter("completed")} className={filter === "completed" ? "selected": ""}>Completed</a>
 			</li>
 		</ul>
 
-		<button className="clear-completed">
+		<button className="clear-completed" onClick={clearCompleted}>
 			Clear completed
 		</button>
 	</footer>
