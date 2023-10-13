@@ -10,13 +10,13 @@ function List() {
   filtered = todos; // 10-18 satırlar en son yazılacak
 
   if(filter !== "all"){
-    filtered = todos.filter((todo)=>
-      filter === "active"
-        ? todo.completed === false && todo
-        : todo.comleted === true && todo
+    filtered = todos.filter((todo)=> //todos altında filtreleme yapıyoruz ve her defasında bir todo geliyor
+      filter === "active"  //filter eğer aktif ise
+        ? todo.completed === false && todo //todo.completat ları false olanları alıyroum sadece
+        : todo.comleted === true && todo //aksi halde ise true alnaları ver
     );
   }
-
+ 
   return (
     <ul className="todo-list">
         {filtered.map((todo)=>(  //todos.map ten filter.map yapıyoruz filtreleme işleminde

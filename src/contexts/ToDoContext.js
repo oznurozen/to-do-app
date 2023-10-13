@@ -23,11 +23,13 @@ export const TodoProvider = ({children}) => {
 
     const toggleTodo = (id) =>{
         const cloned_todos = [...todos];
-
-        const itemIndex = cloned_todos.findIndex((todo) => todo.id ===id);
-        const item = todos[itemIndex];
+        //güncellemek istediğim elemanın id sini kullanarak o objeye erişmem gerekiyor.
+        const itemIndex = cloned_todos.findIndex((todo) => todo.id ===id); // too.id nin denkse parametreden gönderdiğimiz id(onchange) ye onu bana söylesin
+        const item = todos[itemIndex];  //indexsi bulduktan sonra indexse sahip olan obje
         item.completed = !item.completed;
-
+           // console.log(itemIndex);
+            // console.log("item", item);
+       // console.log("cloned_todos", cloned_todos);
         setTodos(cloned_todos);
     };
 
@@ -35,7 +37,7 @@ export const TodoProvider = ({children}) => {
         const cloned_todos = [...todos];
     
         const itemIndex =  cloned_todos.findIndex((todo)=>todo.id === id);
-        cloned_todos.splice(itemIndex,1);
+        cloned_todos.splice(itemIndex,1);//cloned_todos altındaki itemIndex li elemanı aray üzerinden kaldır.
         setTodos(cloned_todos);
     
       }
@@ -51,6 +53,7 @@ export const TodoProvider = ({children}) => {
        
     };
 
+    //value propuna hazırladığım verileri geçiyorum.
     return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>
 };
 
